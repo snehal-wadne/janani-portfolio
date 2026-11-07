@@ -61,7 +61,7 @@ export default function TalaVisualizer() {
           playBellSound(next === 0)
           return next
         })
-      }, 720) // ~83 BPM traditional Vilamba/Madhyama tempo
+      }, 720)
     } else {
       setCurrentBeat(0)
     }
@@ -89,10 +89,12 @@ export default function TalaVisualizer() {
       background: 'rgba(23, 17, 15, 0.85)',
       border: '1.5px solid var(--gold)',
       borderRadius: '6px',
-      padding: '2.5rem 2rem',
+      padding: 'clamp(1.5rem, 4vw, 2.5rem) clamp(0.85rem, 3vw, 2rem)',
       boxShadow: '0 16px 40px rgba(0,0,0,0.45)',
       position: 'relative',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      width: '100%',
+      boxSizing: 'border-box'
     }}>
       {/* Background Sacred Geometric Mandala Accents */}
       <svg
@@ -117,32 +119,33 @@ export default function TalaVisualizer() {
         flexWrap: 'wrap',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: '2rem',
-        gap: '1.5rem',
+        marginBottom: '1.75rem',
+        gap: '1.25rem',
         borderBottom: '1px solid rgba(201, 162, 94, 0.2)',
-        paddingBottom: '1.5rem'
+        paddingBottom: '1.25rem'
       }}>
-        <div>
+        <div style={{ flex: '1 1 280px' }}>
           <span style={{
             color: 'var(--gold)',
-            fontSize: '0.75rem',
+            fontSize: '0.72rem',
             textTransform: 'uppercase',
             letterSpacing: '0.15em',
-            fontWeight: 600
+            fontWeight: 600,
+            display: 'block'
           }}>
             Interactive Classical Rhythm · Adi Tala
           </span>
           <h4 style={{
             fontFamily: 'var(--font-serif)',
             color: 'var(--ivory)',
-            fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)',
+            fontSize: 'clamp(1.2rem, 3vw, 1.8rem)',
             margin: '0.3rem 0'
           }}>
             The Pulse of Salangai: 8-Beat Rhythm Cycle
           </h4>
           <p style={{
             color: 'var(--sand)',
-            fontSize: '0.88rem',
+            fontSize: 'clamp(0.85rem, 2vw, 0.9rem)',
             margin: 0,
             lineHeight: 1.5,
             maxWidth: '560px'
@@ -152,7 +155,7 @@ export default function TalaVisualizer() {
         </div>
 
         {/* Controls */}
-        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: '0.65rem', alignItems: 'center', flexWrap: 'wrap' }}>
           <button
             onClick={() => setSoundEnabled(!soundEnabled)}
             aria-label={soundEnabled ? 'Mute bell sound' : 'Enable bell sound'}
@@ -161,13 +164,14 @@ export default function TalaVisualizer() {
               background: soundEnabled ? 'rgba(201, 162, 94, 0.2)' : 'transparent',
               border: '1px solid var(--gold)',
               color: 'var(--gold)',
-              padding: '0.6rem',
+              padding: '0.55rem',
               borderRadius: '50%',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              transition: 'all 0.2s ease'
+              transition: 'all 0.2s ease',
+              flexShrink: 0
             }}
           >
             {soundEnabled ? <Volume2 size={18} /> : <VolumeX size={18} />}
@@ -179,39 +183,41 @@ export default function TalaVisualizer() {
               background: isPlaying ? 'var(--kumkum)' : 'var(--gold)',
               color: isPlaying ? 'var(--ivory)' : 'var(--ink)',
               border: 'none',
-              padding: '0.75rem 1.6rem',
+              padding: '0.65rem 1.4rem',
               borderRadius: '4px',
               fontFamily: 'var(--font-body)',
               fontWeight: 600,
-              fontSize: '0.85rem',
-              letterSpacing: '0.08em',
+              fontSize: '0.82rem',
+              letterSpacing: '0.06em',
               textTransform: 'uppercase',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: '0.5rem',
+              gap: '0.45rem',
               boxShadow: isPlaying ? '0 0 16px rgba(155, 45, 38, 0.6)' : '0 4px 14px rgba(201, 162, 94, 0.3)',
               transition: 'all 0.3s ease'
             }}
           >
             {isPlaying ? (
               <>
-                <Square size={16} fill="currentColor" /> Stop Tala
+                <Square size={15} fill="currentColor" /> Stop Tala
               </>
             ) : (
               <>
-                <Play size={16} fill="currentColor" /> Experience Rhythm
+                <Play size={15} fill="currentColor" /> Experience Rhythm
               </>
             )}
           </button>
         </div>
       </div>
 
-      {/* The 8 Beats Flow */}
+      {/* The 8 Beats Flow (Fully Responsive on All Screen Sizes) */}
       <div className="tala-beats-grid" style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(8, 1fr)',
-        gap: '8px'
+        gap: '6px',
+        width: '100%',
+        boxSizing: 'border-box'
       }}>
         {TALA_BEATS.map((beat, index) => {
           const isActive = isPlaying && currentBeat === index
@@ -227,15 +233,16 @@ export default function TalaVisualizer() {
                   ? '2px solid var(--ivory)'
                   : (isSamam ? '1.5px solid rgba(201, 162, 94, 0.6)' : '1px solid rgba(201, 162, 94, 0.25)'),
                 borderRadius: '4px',
-                padding: '1rem 0.5rem',
+                padding: '0.85rem 0.35rem',
                 textAlign: 'center',
-                transform: isActive ? 'scale(1.08) translateY(-4px)' : 'scale(1)',
+                transform: isActive ? 'scale(1.05) translateY(-2px)' : 'scale(1)',
                 transition: 'all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-                boxShadow: isActive ? '0 10px 24px rgba(201, 162, 94, 0.4)' : 'none'
+                boxShadow: isActive ? '0 8px 20px rgba(201, 162, 94, 0.4)' : 'none',
+                boxSizing: 'border-box'
               }}
             >
               <span style={{
-                fontSize: '0.65rem',
+                fontSize: '0.62rem',
                 color: isActive ? (isSamam ? 'var(--ivory)' : 'var(--ink)') : 'var(--sand)',
                 textTransform: 'uppercase',
                 display: 'block',
@@ -246,20 +253,21 @@ export default function TalaVisualizer() {
               </span>
               <div style={{
                 fontFamily: 'var(--font-serif)',
-                fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
+                fontSize: 'clamp(1rem, 2.5vw, 1.35rem)',
                 fontWeight: 700,
                 color: isActive
                   ? (isSamam ? 'var(--ivory)' : 'var(--ink)')
                   : (isSamam ? 'var(--gold)' : 'var(--ivory)'),
-                margin: '0.2rem 0'
+                margin: '0.15rem 0'
               }}>
                 {beat.syllable}
               </div>
               <span style={{
                 fontSize: '0.62rem',
-                color: isActive ? (isSamam ? 'var(--ivory)' : 'var(--ink)') : 'rgba(227, 213, 181, 0.7)',
+                color: isActive ? (isSamam ? 'var(--ivory)' : 'var(--ink)') : 'rgba(227, 213, 181, 0.75)',
                 display: 'block',
-                lineHeight: 1.2
+                lineHeight: 1.2,
+                wordBreak: 'break-word'
               }}>
                 {beat.action}
               </span>
@@ -272,12 +280,12 @@ export default function TalaVisualizer() {
         display: 'flex',
         justifyContent: 'space-between',
         marginTop: '1.25rem',
-        fontSize: '0.78rem',
+        fontSize: 'clamp(0.72rem, 1.8vw, 0.78rem)',
         color: 'var(--sand)',
         flexWrap: 'wrap',
-        gap: '0.5rem'
+        gap: '0.4rem'
       }}>
-        <span><strong>Laghu (4 Beats):</strong> 1 Clap + 3 Finger counts</span>
+        <span><strong>Laghu (4 Beats):</strong> 1 Clap + 3 Counts</span>
         <span><strong>Dhrutam 1 (2 Beats):</strong> 1 Clap + 1 Wave</span>
         <span><strong>Dhrutam 2 (2 Beats):</strong> 1 Clap + 1 Wave</span>
       </div>
@@ -286,7 +294,13 @@ export default function TalaVisualizer() {
         @media (max-width: 768px) {
           .tala-beats-grid {
             grid-template-columns: repeat(4, 1fr) !important;
-            gap: 10px !important;
+            gap: 8px !important;
+          }
+        }
+        @media (max-width: 440px) {
+          .tala-beats-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 6px !important;
           }
         }
       `}</style>

@@ -9,20 +9,22 @@ export default function Journey({ journey }) {
       id="journey"
       className="section-dark"
       style={{
-        padding: 'var(--section-pad) 1.5rem',
+        padding: 'var(--section-pad) 1rem',
         position: 'relative',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        width: '100%',
+        boxSizing: 'border-box'
       }}
     >
       <TempleCanvas style={{ opacity: 0.5 }} />
 
-      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+      <div className="container" style={{ position: 'relative', zIndex: 1, boxSizing: 'border-box' }}>
         <Reveal>
           <SectionHeading eyebrow={journey.eyebrow} heading={journey.heading} />
         </Reveal>
 
         {/* Timeline Desktop & Mobile Responsive */}
-        <div className="timeline-container" style={{ position: 'relative', marginBottom: '5.5rem' }}>
+        <div className="timeline-container" style={{ position: 'relative', marginBottom: '5rem', width: '100%', boxSizing: 'border-box' }}>
           {/* Desktop Central Spine Line */}
           <div className="timeline-spine-desktop" style={{
             position: 'absolute', left: '50%', top: '10px', bottom: '10px',
@@ -32,7 +34,7 @@ export default function Journey({ journey }) {
 
           {/* Mobile Left Spine Line */}
           <div className="timeline-spine-mobile" style={{
-            position: 'absolute', left: '18px', top: '10px', bottom: '10px',
+            position: 'absolute', left: '16px', top: '10px', bottom: '10px',
             width: '2px', background: 'linear-gradient(180deg, rgba(201,162,94,0.1) 0%, rgba(201,162,94,0.6) 50%, rgba(201,162,94,0.1) 100%)',
             display: 'none'
           }} />
@@ -51,14 +53,14 @@ export default function Journey({ journey }) {
                       <div style={{ textAlign: 'right', paddingRight: '2.5rem' }}>
                         <span style={{
                           color: 'var(--gold)', fontFamily: 'var(--font-serif)',
-                          fontSize: '0.85rem', fontWeight: 600,
+                          fontSize: '0.82rem', fontWeight: 600,
                           textTransform: 'uppercase', letterSpacing: '0.1em'
                         }}>
                           {item.label}
                         </span>
                         <h4 style={{
                           fontFamily: 'var(--font-serif)', color: 'var(--ivory)',
-                          fontSize: '1.25rem', margin: '0.3rem 0'
+                          fontSize: '1.25rem', margin: '0.25rem 0'
                         }}>
                           {item.title}
                         </h4>
@@ -90,14 +92,14 @@ export default function Journey({ journey }) {
                       <div style={{ paddingLeft: '2.5rem' }}>
                         <span style={{
                           color: 'var(--gold)', fontFamily: 'var(--font-serif)',
-                          fontSize: '0.85rem', fontWeight: 600,
+                          fontSize: '0.82rem', fontWeight: 600,
                           textTransform: 'uppercase', letterSpacing: '0.1em'
                         }}>
                           {item.label}
                         </span>
                         <h4 style={{
                           fontFamily: 'var(--font-serif)', color: 'var(--ivory)',
-                          fontSize: '1.25rem', margin: '0.3rem 0'
+                          fontSize: '1.25rem', margin: '0.25rem 0'
                         }}>
                           {item.title}
                         </h4>
@@ -109,38 +111,40 @@ export default function Journey({ journey }) {
                   )}
                 </div>
 
-                {/* Mobile Row (Shown only on <= 768px) */}
+                {/* Mobile Row (Shown only on <= 768px, Never overflows) */}
                 <div className="timeline-item-mobile" style={{
                   display: 'none',
                   position: 'relative',
-                  paddingLeft: '48px',
-                  marginBottom: '2.25rem',
-                  textAlign: 'left'
+                  paddingLeft: '42px',
+                  marginBottom: '2rem',
+                  textAlign: 'left',
+                  width: '100%',
+                  boxSizing: 'border-box'
                 }}>
                   {/* Gold node on mobile spine */}
                   <div style={{
-                    position: 'absolute', left: '11px', top: '6px',
-                    width: '16px', height: '16px', borderRadius: '50%',
+                    position: 'absolute', left: '10px', top: '4px',
+                    width: '14px', height: '14px', borderRadius: '50%',
                     background: 'var(--gold)',
-                    border: '3px solid var(--ink)',
+                    border: '2px solid var(--ink)',
                     boxShadow: '0 0 0 2px var(--gold)'
                   }} />
 
                   <span style={{
                     color: 'var(--gold)', fontFamily: 'var(--font-serif)',
-                    fontSize: '0.8rem', fontWeight: 600,
-                    textTransform: 'uppercase', letterSpacing: '0.1em',
+                    fontSize: '0.78rem', fontWeight: 600,
+                    textTransform: 'uppercase', letterSpacing: '0.08em',
                     display: 'block'
                   }}>
                     {item.label}
                   </span>
                   <h4 style={{
                     fontFamily: 'var(--font-serif)', color: 'var(--ivory)',
-                    fontSize: '1.18rem', margin: '0.25rem 0 0.4rem'
+                    fontSize: 'clamp(1.1rem, 2.5vw, 1.25rem)', margin: '0.2rem 0 0.35rem'
                   }}>
                     {item.title}
                   </h4>
-                  <p style={{ color: 'var(--sand)', lineHeight: 1.6, fontSize: '0.9rem', margin: 0 }}>
+                  <p style={{ color: 'var(--sand)', lineHeight: 1.6, fontSize: '0.88rem', margin: 0 }}>
                     {item.text}
                   </p>
                 </div>
@@ -155,13 +159,15 @@ export default function Journey({ journey }) {
             background: 'linear-gradient(135deg, rgba(82,54,74,0.3) 0%, rgba(23,17,15,0.8) 100%)',
             border: '1.5px solid rgba(201,162,94,0.3)',
             borderRadius: '6px',
-            padding: '3rem 2rem',
-            marginBottom: '4rem'
+            padding: 'clamp(1.5rem, 4vw, 3rem) clamp(0.85rem, 3vw, 2rem)',
+            marginBottom: '4rem',
+            width: '100%',
+            boxSizing: 'border-box'
           }}>
             <h3 style={{
               fontFamily: 'var(--font-serif)', color: 'var(--ivory)',
-              fontSize: 'clamp(1.4rem, 2.5vw, 2.2rem)',
-              marginBottom: '2.5rem', textAlign: 'center'
+              fontSize: 'clamp(1.3rem, 2.5vw, 2.2rem)',
+              marginBottom: '2rem', textAlign: 'center'
             }}>
               {journey.diagnosis.heading}
             </h3>
@@ -169,24 +175,26 @@ export default function Journey({ journey }) {
             {/* Diagnosis Stats */}
             <div className="diagnosis-stats" style={{
               display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: '2rem', marginBottom: '3rem'
+              gap: 'clamp(1rem, 2.5vw, 2rem)', marginBottom: '2.5rem',
+              width: '100%', boxSizing: 'border-box'
             }}>
               {journey.diagnosis.stats.map((s, i) => (
                 <div key={i} style={{
                   textAlign: 'center',
-                  borderTop: '2px solid var(--gold)', paddingTop: '1.5rem',
+                  borderTop: '2px solid var(--gold)',
                   background: 'rgba(23,17,15,0.4)',
-                  padding: '1.5rem 1rem',
-                  borderRadius: '0 0 4px 4px'
+                  padding: '1.25rem 0.75rem',
+                  borderRadius: '0 0 4px 4px',
+                  boxSizing: 'border-box'
                 }}>
                   <div style={{
                     fontFamily: 'var(--font-serif)',
-                    fontSize: 'clamp(2rem, 4vw, 3.2rem)',
+                    fontSize: 'clamp(1.8rem, 4vw, 3.2rem)',
                     color: 'var(--gold)', fontWeight: 700
                   }}>
                     {s.value}
                   </div>
-                  <div style={{ color: 'var(--sand)', fontSize: '0.85rem', marginTop: '0.4rem' }}>
+                  <div style={{ color: 'var(--sand)', fontSize: '0.8rem', marginTop: '0.35rem' }}>
                     {s.label}
                   </div>
                 </div>
@@ -196,22 +204,24 @@ export default function Journey({ journey }) {
             {/* Diagnosis Cards */}
             <div className="diagnosis-cards" style={{
               display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: '1.5rem', marginBottom: '3rem'
+              gap: '1.25rem', marginBottom: '2.5rem',
+              width: '100%', boxSizing: 'border-box'
             }}>
               {journey.diagnosis.cards.map((card, i) => (
                 <div key={i} style={{
-                  padding: '2rem 1.75rem',
+                  padding: 'clamp(1.25rem, 3vw, 2rem) clamp(1rem, 2.5vw, 1.75rem)',
                   border: '1px solid rgba(201,162,94,0.3)',
                   borderRadius: '4px', background: 'rgba(82,54,74,0.25)',
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.2)'
+                  boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
+                  boxSizing: 'border-box'
                 }}>
                   <h4 style={{
                     fontFamily: 'var(--font-serif)', color: 'var(--gold)',
-                    fontSize: '1.2rem', marginBottom: '0.75rem'
+                    fontSize: '1.15rem', marginBottom: '0.65rem'
                   }}>
                     {card.title}
                   </h4>
-                  <p style={{ color: 'var(--sand)', lineHeight: 1.7, fontSize: '0.92rem', margin: 0 }}>
+                  <p style={{ color: 'var(--sand)', lineHeight: 1.7, fontSize: '0.9rem', margin: 0 }}>
                     {card.text}
                   </p>
                 </div>
@@ -220,13 +230,14 @@ export default function Journey({ journey }) {
 
             <blockquote style={{
               textAlign: 'center', fontFamily: 'var(--font-serif)',
-              fontSize: 'clamp(1.2rem, 2.5vw, 1.8rem)',
+              fontSize: 'clamp(1.15rem, 2.5vw, 1.75rem)',
               color: 'var(--ivory)', fontStyle: 'italic',
               borderTop: '1px solid rgba(201,162,94,0.3)',
               borderBottom: '1px solid rgba(201,162,94,0.3)',
-              padding: '2rem 1rem',
+              padding: '1.75rem 0.5rem',
               margin: '0 auto',
-              maxWidth: '720px'
+              maxWidth: '720px',
+              lineHeight: 1.5
             }}>
               &ldquo;{journey.diagnosis.pullQuote}&rdquo;
             </blockquote>
@@ -244,7 +255,7 @@ export default function Journey({ journey }) {
           .timeline-item-mobile { display: block !important; }
           .diagnosis-stats, .diagnosis-cards {
             grid-template-columns: 1fr !important;
-            gap: 1.25rem !important;
+            gap: 1rem !important;
           }
         }
       `}</style>

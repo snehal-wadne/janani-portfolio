@@ -21,7 +21,6 @@ export default function Gallery({ gallery }) {
     : gallery.items.filter((item) => item.category === selectedCategory)
 
   const openLightbox = (originalIndex) => {
-    // Find index in filteredItems or original items
     const item = gallery.items[originalIndex]
     const idxInFiltered = filteredItems.findIndex((it) => it.file === item.file)
     setLightboxIndex(idxInFiltered >= 0 ? idxInFiltered : 0)
@@ -36,37 +35,41 @@ export default function Gallery({ gallery }) {
       id="gallery"
       className="section-dark"
       style={{
-        padding: 'var(--section-pad) 1.5rem',
+        padding: 'var(--section-pad) 1rem',
         position: 'relative',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        width: '100%',
+        boxSizing: 'border-box'
       }}
     >
       <TempleCanvas style={{ opacity: 0.4 }} />
 
-      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+      <div className="container" style={{ position: 'relative', zIndex: 1, boxSizing: 'border-box' }}>
         <Reveal>
           <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
             <SectionHeading eyebrow={gallery.eyebrow} heading={gallery.heading} />
             <p style={{
               color: 'var(--sand)',
-              fontSize: '0.95rem',
+              fontSize: 'clamp(0.88rem, 2vw, 0.95rem)',
               maxWidth: '620px',
               margin: '-1.5rem auto 2.5rem',
-              lineHeight: 1.6
+              lineHeight: 1.6,
+              padding: '0 0.5rem'
             }}>
               Photographic milestones documenting Janani’s devotion to Bharatanatyam, her reverent training under her guru, and her triumphant journey through organ transplantation.
             </p>
 
-            {/* Filter Tabs */}
+            {/* Filter Tabs (Responsive) */}
             <div style={{
               display: 'inline-flex',
               flexWrap: 'wrap',
-              gap: '0.5rem',
+              gap: '0.4rem',
               background: 'rgba(23, 17, 15, 0.8)',
               padding: '6px',
               borderRadius: '30px',
               border: '1px solid rgba(201, 162, 94, 0.3)',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              maxWidth: '100%'
             }}>
               {CATEGORIES.map((cat) => {
                 const isActive = selectedCategory === cat.id
@@ -79,11 +82,11 @@ export default function Gallery({ gallery }) {
                       color: isActive ? 'var(--ink)' : 'var(--ivory)',
                       border: 'none',
                       borderRadius: '24px',
-                      padding: '0.5rem 1.25rem',
+                      padding: '0.45rem 1rem',
                       fontFamily: 'var(--font-body)',
-                      fontSize: '0.82rem',
+                      fontSize: 'clamp(0.75rem, 1.8vw, 0.82rem)',
                       fontWeight: 600,
-                      letterSpacing: '0.04em',
+                      letterSpacing: '0.03em',
                       cursor: 'pointer',
                       transition: 'all 0.25s ease'
                     }}
@@ -102,8 +105,10 @@ export default function Gallery({ gallery }) {
           className="gallery-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 280px), 1fr))',
-            gap: '1.5rem'
+            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 250px), 1fr))',
+            gap: 'clamp(1rem, 2.5vw, 1.5rem)',
+            width: '100%',
+            boxSizing: 'border-box'
           }}
         >
           <AnimatePresence>
@@ -115,6 +120,7 @@ export default function Gallery({ gallery }) {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.92 }}
                 transition={{ duration: 0.35 }}
+                style={{ width: '100%', boxSizing: 'border-box' }}
               >
                 <button
                   onClick={() => setLightboxIndex(i)}
@@ -123,7 +129,7 @@ export default function Gallery({ gallery }) {
                     background: 'rgba(23, 17, 15, 0.85)',
                     border: '1.5px solid rgba(201, 162, 94, 0.3)',
                     cursor: 'pointer',
-                    padding: '10px',
+                    padding: '8px',
                     display: 'flex',
                     flexDirection: 'column',
                     width: '100%',
@@ -132,7 +138,8 @@ export default function Gallery({ gallery }) {
                     borderRadius: '4px',
                     boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
                     transition: 'all 0.3s ease',
-                    textAlign: 'left'
+                    textAlign: 'left',
+                    boxSizing: 'border-box'
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.borderColor = 'var(--gold)'
@@ -148,14 +155,15 @@ export default function Gallery({ gallery }) {
                   <div style={{
                     position: 'relative',
                     width: '100%',
-                    height: '260px',
+                    height: '240px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     background: '#100B09',
                     borderRadius: '2px',
                     border: '1px solid rgba(201, 162, 94, 0.2)',
-                    overflow: 'hidden'
+                    overflow: 'hidden',
+                    boxSizing: 'border-box'
                   }}>
                     <img
                       src={`/images/${item.file}`}
@@ -173,7 +181,7 @@ export default function Gallery({ gallery }) {
                   </div>
 
                   <div style={{
-                    marginTop: '0.85rem',
+                    marginTop: '0.75rem',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
@@ -182,7 +190,7 @@ export default function Gallery({ gallery }) {
                     <div>
                       <p style={{
                         color: 'var(--ivory)',
-                        fontSize: '0.9rem',
+                        fontSize: 'clamp(0.85rem, 2vw, 0.92rem)',
                         fontFamily: 'var(--font-serif)',
                         fontWeight: 600,
                         margin: 0
@@ -192,7 +200,7 @@ export default function Gallery({ gallery }) {
                       {item.category && (
                         <span style={{
                           color: 'var(--gold)',
-                          fontSize: '0.7rem',
+                          fontSize: '0.68rem',
                           textTransform: 'uppercase',
                           letterSpacing: '0.08em',
                           opacity: 0.85
@@ -201,7 +209,7 @@ export default function Gallery({ gallery }) {
                         </span>
                       )}
                     </div>
-                    <span style={{ color: 'var(--gold)', fontSize: '0.95rem' }}>
+                    <span style={{ color: 'var(--gold)', fontSize: '0.9rem', flexShrink: 0 }}>
                       ✦
                     </span>
                   </div>

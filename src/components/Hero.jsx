@@ -5,7 +5,18 @@ import TempleCanvas from './ui/TempleCanvas'
 export default function Hero({ person }) {
   const reduced = useReducedMotion()
 
-  const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+  const scrollTo = (id) => {
+    const el = document.getElementById(id)
+    if (el) {
+      const navHeight = 75
+      const rect = el.getBoundingClientRect()
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+      window.scrollTo({
+        top: Math.max(0, rect.top + scrollTop - navHeight),
+        behavior: 'smooth'
+      })
+    }
+  }
 
   return (
     <section
@@ -17,7 +28,9 @@ export default function Hero({ person }) {
         alignItems: 'center',
         paddingTop: '74px',
         position: 'relative',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        width: '100%',
+        boxSizing: 'border-box'
       }}
     >
       {/* Background Interactive Temple Particles */}
@@ -50,13 +63,6 @@ export default function Hero({ person }) {
             stroke="#C9A25E" strokeWidth="0.5"
           />
         ))}
-        {[0,45,90,135,180,225,270,315].map((a) => (
-          <ellipse
-            key={a} cx="200" cy="200" rx="30" ry="90"
-            fill="none" stroke="#C9A25E" strokeWidth="0.5"
-            transform={`rotate(${a} 200 200)`}
-          />
-        ))}
       </svg>
 
       <div
@@ -64,12 +70,13 @@ export default function Hero({ person }) {
         style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
-          gap: '4rem',
+          gap: 'clamp(2rem, 5vw, 4rem)',
           alignItems: 'center',
-          padding: '4rem 1.5rem',
+          padding: 'clamp(2.5rem, 6vw, 4rem) clamp(1rem, 3vw, 1.5rem)',
           width: '100%',
           position: 'relative',
-          zIndex: 1
+          zIndex: 1,
+          boxSizing: 'border-box'
         }}
       >
         {/* Text Content */}
@@ -78,12 +85,13 @@ export default function Hero({ person }) {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           className="hero-text"
+          style={{ width: '100%', boxSizing: 'border-box' }}
         >
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1rem' }}>
-            <span style={{ color: 'var(--gold)', fontSize: '0.85rem' }}>✦</span>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.85rem' }}>
+            <span style={{ color: 'var(--gold)', fontSize: '0.8rem' }}>✦</span>
             <p style={{
               color: 'var(--gold)', textTransform: 'uppercase',
-              letterSpacing: '0.2em', fontSize: '0.78rem',
+              letterSpacing: '0.15em', fontSize: '0.75rem',
               fontWeight: 600, margin: 0
             }}>
               {person.heroKicker}
@@ -92,46 +100,48 @@ export default function Hero({ person }) {
 
           <h1 style={{
             fontFamily: 'var(--font-serif)',
-            fontSize: 'clamp(2.8rem, 6vw, 5.5rem)',
-            color: 'var(--ivory)', lineHeight: 1.08,
-            marginBottom: '1.25rem', fontWeight: 700
+            fontSize: 'clamp(2.1rem, 7vw, 5.2rem)',
+            color: 'var(--ivory)', lineHeight: 1.1,
+            marginBottom: '1rem', fontWeight: 700,
+            wordBreak: 'break-word'
           }}>
             {person.name}
           </h1>
 
           <p style={{
-            color: 'var(--gold-soft)', fontSize: '0.85rem',
-            letterSpacing: '0.1em', textTransform: 'uppercase',
-            marginBottom: '1.5rem', lineHeight: 1.6
+            color: 'var(--gold-soft)', fontSize: 'clamp(0.78rem, 1.8vw, 0.85rem)',
+            letterSpacing: '0.08em', textTransform: 'uppercase',
+            marginBottom: '1.25rem', lineHeight: 1.5,
+            wordBreak: 'break-word'
           }}>
             {person.roles.join(' · ')}
           </p>
 
           <p style={{
             fontFamily: 'var(--font-serif)',
-            fontSize: 'clamp(1.15rem, 2vw, 1.4rem)',
+            fontSize: 'clamp(1.05rem, 2.5vw, 1.35rem)',
             color: 'var(--sand)', lineHeight: 1.6,
-            marginBottom: '0.75rem', fontStyle: 'italic'
+            marginBottom: '0.65rem', fontStyle: 'italic'
           }}>
             &ldquo;{person.tagline}&rdquo;
           </p>
 
           <p style={{
             fontFamily: 'var(--font-serif)',
-            fontSize: 'clamp(1rem, 1.6vw, 1.15rem)',
-            color: 'var(--gold)', lineHeight: 1.6, marginBottom: '2.5rem'
+            fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
+            color: 'var(--gold)', lineHeight: 1.6, marginBottom: '2rem'
           }}>
             {person.heroQuote}
           </p>
 
-          <div className="hero-cta-group" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+          <div className="hero-cta-group" style={{ display: 'flex', gap: '0.85rem', flexWrap: 'wrap', width: '100%' }}>
             <button
               onClick={() => scrollTo('journey')}
               style={{
                 background: 'var(--gold)', color: 'var(--ink)',
-                border: 'none', padding: '0.9rem 2.2rem',
+                border: 'none', padding: '0.85rem 2rem',
                 fontFamily: 'var(--font-body)', fontWeight: 600,
-                fontSize: '0.85rem', letterSpacing: '0.08em',
+                fontSize: '0.82rem', letterSpacing: '0.06em',
                 textTransform: 'uppercase', cursor: 'pointer',
                 borderRadius: '2px', transition: 'all 0.3s ease',
                 boxShadow: '0 4px 16px rgba(201, 162, 94, 0.3)'
@@ -151,9 +161,9 @@ export default function Hero({ person }) {
               onClick={() => scrollTo('collaborate')}
               style={{
                 background: 'transparent', color: 'var(--gold)',
-                border: '1.5px solid var(--gold)', padding: '0.9rem 2.2rem',
+                border: '1.5px solid var(--gold)', padding: '0.85rem 2rem',
                 fontFamily: 'var(--font-body)', fontWeight: 600,
-                fontSize: '0.85rem', letterSpacing: '0.08em',
+                fontSize: '0.82rem', letterSpacing: '0.06em',
                 textTransform: 'uppercase', cursor: 'pointer',
                 borderRadius: '2px', transition: 'all 0.3s ease'
               }}
@@ -178,13 +188,13 @@ export default function Hero({ person }) {
           initial={reduced ? false : { opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-          style={{ display: 'flex', justifyContent: 'center' }}
+          style={{ display: 'flex', justifyContent: 'center', width: '100%' }}
           className="hero-image"
         >
           <ArchFrame
             src={`/images/${person.heroImage}`}
             alt="Portrait of Janani Pradhaban in a red and teal saree"
-            size={480}
+            size={440}
           />
         </motion.div>
       </div>
@@ -194,16 +204,16 @@ export default function Hero({ person }) {
           .hero-grid {
             grid-template-columns: 1fr !important;
             text-align: center;
-            gap: 2.5rem !important;
-            padding: 3rem 1.25rem !important;
+            gap: 2.25rem !important;
+            padding: 2.5rem 1rem !important;
           }
           .hero-text { order: 2; }
           .hero-image { order: 1; }
-          .hero-image > div { max-width: 290px !important; }
+          .hero-image > div { max-width: min(320px, 100%) !important; }
           .hero-text > div:first-child { justify-content: center; }
           .hero-cta-group { justify-content: center; }
         }
-        @media (max-width: 480px) {
+        @media (max-width: 440px) {
           .hero-cta-group {
             flex-direction: column;
             width: 100%;

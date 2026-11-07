@@ -48,7 +48,7 @@ const NAVARASA_DATA = [
     devanagari: 'वीर',
     meaning: 'Courage & Heroism',
     color: '#E09943',
-    colorName: 'Gaura / Radiant Saffron',
+    colorName: 'Gaura / Saffron',
     deity: 'Indra',
     biographyReflection: 'Bravery entering the 12-hour surgery, enduring intensive care, rebuilding muscles from zero, and stepping boldly back onto stage.'
   },
@@ -98,20 +98,20 @@ export default function NavarasaExplorer({ heading }) {
   const [activeRasa, setActiveRasa] = useState(NAVARASA_DATA[0])
 
   return (
-    <div style={{ marginBottom: '5rem' }}>
+    <div style={{ marginBottom: '5rem', width: '100%', boxSizing: 'border-box' }}>
       {/* Section Title */}
       <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
         <h3 style={{
           fontFamily: 'var(--font-serif)',
           color: 'var(--ivory)',
-          fontSize: 'clamp(1.4rem, 2.5vw, 2.2rem)',
+          fontSize: 'clamp(1.3rem, 2.5vw, 2.2rem)',
           marginBottom: '0.75rem'
         }}>
           {heading || 'Navarasa: The Nine Emotions of Life & Stage'}
         </h3>
         <p style={{
           color: 'var(--sand)',
-          fontSize: '0.95rem',
+          fontSize: 'clamp(0.88rem, 2vw, 0.95rem)',
           maxWidth: '620px',
           margin: '0 auto',
           lineHeight: 1.6
@@ -124,9 +124,11 @@ export default function NavarasaExplorer({ heading }) {
       <div className="navarasa-interactive-grid" style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(3, 1fr)',
-        gap: '10px',
+        gap: '8px',
         maxWidth: '920px',
-        margin: '0 auto 2rem'
+        margin: '0 auto 2rem',
+        width: '100%',
+        boxSizing: 'border-box'
       }}>
         {NAVARASA_DATA.map((item) => {
           const isSelected = activeRasa.id === item.id
@@ -139,12 +141,13 @@ export default function NavarasaExplorer({ heading }) {
                 background: isSelected ? 'rgba(82, 54, 74, 0.7)' : 'rgba(23, 17, 15, 0.85)',
                 border: isSelected ? '1.5px solid var(--gold)' : '1px solid rgba(201, 162, 94, 0.25)',
                 borderRadius: '4px',
-                padding: '1.25rem 1rem',
+                padding: 'clamp(0.85rem, 2vw, 1.25rem) clamp(0.5rem, 1.5vw, 1rem)',
                 cursor: 'pointer',
                 textAlign: 'center',
-                transition: 'all 0.3s ease',
+                transition: 'all 0.25s ease',
                 position: 'relative',
-                boxShadow: isSelected ? '0 8px 24px rgba(201, 162, 94, 0.2)' : 'none'
+                boxShadow: isSelected ? '0 8px 24px rgba(201, 162, 94, 0.2)' : 'none',
+                boxSizing: 'border-box'
               }}
               onMouseEnter={(e) => {
                 if (!isSelected) {
@@ -160,29 +163,29 @@ export default function NavarasaExplorer({ heading }) {
               }}
             >
               <span style={{
-                fontSize: '0.75rem',
+                fontSize: '0.72rem',
                 color: item.color,
-                opacity: 0.9,
+                opacity: 0.95,
                 fontFamily: 'var(--font-serif)',
                 display: 'block',
-                marginBottom: '0.2rem'
+                marginBottom: '0.15rem'
               }}>
                 {item.devanagari}
               </span>
               <div style={{
                 fontFamily: 'var(--font-serif)',
-                fontSize: '1.15rem',
+                fontSize: 'clamp(1rem, 2vw, 1.15rem)',
                 fontWeight: 600,
                 color: isSelected ? 'var(--gold)' : 'var(--ivory)'
               }}>
                 {item.rasa}
               </div>
               <div style={{
-                fontSize: '0.75rem',
+                fontSize: '0.7rem',
                 color: 'var(--sand)',
                 textTransform: 'uppercase',
-                letterSpacing: '0.08em',
-                marginTop: '0.25rem'
+                letterSpacing: '0.06em',
+                marginTop: '0.2rem'
               }}>
                 {item.meaning}
               </div>
@@ -198,17 +201,19 @@ export default function NavarasaExplorer({ heading }) {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -12 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.25 }}
           style={{
             maxWidth: '920px',
             margin: '0 auto',
             background: 'linear-gradient(135deg, rgba(82, 54, 74, 0.45) 0%, rgba(23, 17, 15, 0.9) 100%)',
             border: '1.5px solid var(--gold)',
             borderRadius: '6px',
-            padding: '2rem 2.5rem',
+            padding: 'clamp(1.25rem, 3.5vw, 2rem) clamp(1rem, 3vw, 2.5rem)',
             boxShadow: '0 16px 40px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(201, 162, 94, 0.05)',
             position: 'relative',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            width: '100%',
+            boxSizing: 'border-box'
           }}
         >
           {/* Subtle background color tint */}
@@ -233,16 +238,17 @@ export default function NavarasaExplorer({ heading }) {
             justifyContent: 'space-between',
             alignItems: 'center',
             borderBottom: '1px solid rgba(201, 162, 94, 0.25)',
-            paddingBottom: '1rem',
-            marginBottom: '1.25rem',
-            gap: '1rem'
+            paddingBottom: '0.85rem',
+            marginBottom: '1rem',
+            gap: '0.75rem',
+            width: '100%'
           }}>
             <div>
               <span style={{
                 color: 'var(--gold)',
-                fontSize: '0.75rem',
+                fontSize: '0.72rem',
                 textTransform: 'uppercase',
-                letterSpacing: '0.15em',
+                letterSpacing: '0.12em',
                 fontWeight: 600
               }}>
                 Classical Rasa &middot; {activeRasa.devanagari}
@@ -250,8 +256,8 @@ export default function NavarasaExplorer({ heading }) {
               <h4 style={{
                 fontFamily: 'var(--font-serif)',
                 color: 'var(--ivory)',
-                fontSize: 'clamp(1.5rem, 3vw, 2.2rem)',
-                margin: '0.2rem 0'
+                fontSize: 'clamp(1.3rem, 3vw, 2rem)',
+                margin: '0.15rem 0'
               }}>
                 {activeRasa.rasa} — <span style={{ color: 'var(--gold)', fontStyle: 'italic' }}>{activeRasa.meaning}</span>
               </h4>
@@ -259,16 +265,17 @@ export default function NavarasaExplorer({ heading }) {
 
             <div style={{
               display: 'flex',
-              gap: '1.5rem',
-              fontSize: '0.8rem',
-              color: 'var(--sand)'
+              gap: '1.25rem',
+              fontSize: '0.78rem',
+              color: 'var(--sand)',
+              flexWrap: 'wrap'
             }}>
               <div>
-                <span style={{ color: 'var(--gold)', display: 'block', fontSize: '0.7rem', textTransform: 'uppercase' }}>Presiding Deity</span>
+                <span style={{ color: 'var(--gold)', display: 'block', fontSize: '0.68rem', textTransform: 'uppercase' }}>Presiding Deity</span>
                 <strong>{activeRasa.deity}</strong>
               </div>
               <div>
-                <span style={{ color: 'var(--gold)', display: 'block', fontSize: '0.7rem', textTransform: 'uppercase' }}>Natyashastra Hue</span>
+                <span style={{ color: 'var(--gold)', display: 'block', fontSize: '0.68rem', textTransform: 'uppercase' }}>Natyashastra Hue</span>
                 <strong>{activeRasa.colorName}</strong>
               </div>
             </div>
@@ -277,19 +284,19 @@ export default function NavarasaExplorer({ heading }) {
           <div>
             <span style={{
               color: 'var(--gold)',
-              fontSize: '0.75rem',
+              fontSize: '0.72rem',
               textTransform: 'uppercase',
-              letterSpacing: '0.12em',
+              letterSpacing: '0.1em',
               fontWeight: 600,
               display: 'block',
-              marginBottom: '0.5rem'
+              marginBottom: '0.4rem'
             }}>
               ✦ Resonance in Janani&rsquo;s Life Journey
             </span>
             <p style={{
               color: 'var(--ivory)',
-              lineHeight: 1.8,
-              fontSize: '1.05rem',
+              lineHeight: 1.7,
+              fontSize: 'clamp(0.92rem, 2vw, 1.02rem)',
               fontFamily: 'var(--font-serif)',
               fontStyle: 'italic',
               margin: 0
@@ -306,7 +313,7 @@ export default function NavarasaExplorer({ heading }) {
             grid-template-columns: repeat(2, 1fr) !important;
           }
         }
-        @media (max-width: 440px) {
+        @media (max-width: 380px) {
           .navarasa-interactive-grid {
             grid-template-columns: 1fr !important;
           }

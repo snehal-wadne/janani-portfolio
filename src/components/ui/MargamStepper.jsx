@@ -7,7 +7,7 @@ const MARGAM_STEPS = [
     n: 1,
     name: 'Alarippu',
     translation: 'The Sacred Flowering',
-    tempo: 'Vilamba to Druta (Gradual acceleration)',
+    tempo: 'Vilamba to Druta',
     role: 'Pure rhythmic invocation. Neck, eye, and shoulder movements unfold rhythmically like the opening of temple lotus petals.',
     lifeReflection: 'Like the blossoming of a flower, her artistic debut began at age four with pure delight and boundless promise.'
   },
@@ -24,7 +24,7 @@ const MARGAM_STEPS = [
     name: 'Shabdam',
     translation: 'The First Words of Song',
     tempo: 'Gentle & Devotional',
-    role: 'The first introduction of Abhinaya (expression) and spoken lyrics, singing hymns of adoration to the deity or king.',
+    role: 'The first introduction of Abhinaya (expression) and spoken lyrics, singing hymns of adoration to the divine.',
     lifeReflection: 'Taking the public stage at her Salangai Pujai (age 13) and Arangetram (age 16), finding her true artistic voice.'
   },
   {
@@ -47,7 +47,7 @@ const MARGAM_STEPS = [
     n: 6,
     name: 'Tillana',
     translation: 'The Exuberant Rhythmic Finale',
-    tempo: 'Druta (Fast, Joyous, Sculptural)',
+    tempo: 'Druta (Fast, Joyous)',
     role: 'A breathless celebration of rhythm, breathtaking sculptural poses, and soaring joy that enchants the audience.',
     lifeReflection: 'The exhilarating triumph of returning to dance after transplant and celebrating the blessing of motherhood.'
   },
@@ -55,7 +55,7 @@ const MARGAM_STEPS = [
     n: 7,
     name: 'Mangalam',
     translation: 'The Benediction of Blessings',
-    tempo: 'Slow, Reverent Prayer',
+    tempo: 'Slow Reverent Prayer',
     role: 'The concluding salutation bowing to the Lord of Dance, the orchestra, the guru, and the assembled gathering.',
     lifeReflection: 'Janani’s lifelong mission: dedicating her voice to Mohan Foundation, raising organ donation awareness: “Please save lives.”'
   }
@@ -69,19 +69,19 @@ export default function MargamStepper({ margam }) {
   const prevStep = () => setCurrentStep((prev) => (prev - 1 + MARGAM_STEPS.length) % MARGAM_STEPS.length)
 
   return (
-    <div style={{ marginBottom: '5rem' }}>
+    <div style={{ marginBottom: '5rem', width: '100%', boxSizing: 'border-box' }}>
       <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
         <h3 style={{
           fontFamily: 'var(--font-serif)',
           color: 'var(--ivory)',
-          fontSize: 'clamp(1.4rem, 2.5vw, 2.2rem)',
+          fontSize: 'clamp(1.3rem, 2.5vw, 2.2rem)',
           marginBottom: '0.5rem'
         }}>
           {margam.heading || 'A Recital in Seven Movements'}
         </h3>
         <p style={{
           color: 'var(--sand)',
-          fontSize: '0.95rem',
+          fontSize: 'clamp(0.9rem, 2vw, 0.95rem)',
           maxWidth: '640px',
           margin: '0 auto',
           lineHeight: 1.6
@@ -90,25 +90,29 @@ export default function MargamStepper({ margam }) {
         </p>
       </div>
 
-      {/* Stepper Navigation Track */}
+      {/* Stepper Navigation Track (Responsive with overflow safety) */}
       <div style={{
         maxWidth: '840px',
-        margin: '0 auto 2.5rem',
-        padding: '0 1rem'
+        margin: '0 auto 2rem',
+        padding: '0 0.5rem',
+        width: '100%',
+        boxSizing: 'border-box',
+        overflowX: 'auto'
       }}>
-        {/* Progress Dots Track */}
         <div style={{
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          position: 'relative'
+          position: 'relative',
+          minWidth: '280px',
+          padding: '0.5rem 0'
         }}>
           {/* Connecting Gold Line */}
           <div style={{
             position: 'absolute',
             top: '50%',
-            left: '20px',
-            right: '20px',
+            left: '16px',
+            right: '16px',
             height: '2px',
             background: 'rgba(201, 162, 94, 0.25)',
             transform: 'translateY(-50%)',
@@ -119,9 +123,9 @@ export default function MargamStepper({ margam }) {
           <div style={{
             position: 'absolute',
             top: '50%',
-            left: '20px',
+            left: '16px',
             width: `${(currentStep / (MARGAM_STEPS.length - 1)) * 100}%`,
-            maxWidth: 'calc(100% - 40px)',
+            maxWidth: 'calc(100% - 32px)',
             height: '2px',
             background: 'var(--gold)',
             transform: 'translateY(-50%)',
@@ -140,21 +144,22 @@ export default function MargamStepper({ margam }) {
                 style={{
                   position: 'relative',
                   zIndex: 2,
-                  width: isActive ? '46px' : '36px',
-                  height: isActive ? '46px' : '36px',
+                  width: isActive ? 'clamp(34px, 5vw, 44px)' : 'clamp(28px, 4vw, 36px)',
+                  height: isActive ? 'clamp(34px, 5vw, 44px)' : 'clamp(28px, 4vw, 36px)',
                   borderRadius: '50%',
                   background: isActive ? 'var(--gold)' : (isCompleted ? 'var(--plum)' : 'var(--ink)'),
-                  border: isActive ? '3px solid var(--ivory)' : '2px solid var(--gold)',
+                  border: isActive ? '2px solid var(--ivory)' : '1.5px solid var(--gold)',
                   color: isActive ? 'var(--ink)' : 'var(--gold)',
                   fontFamily: 'var(--font-serif)',
-                  fontSize: isActive ? '1.15rem' : '0.9rem',
+                  fontSize: isActive ? '1rem' : '0.85rem',
                   fontWeight: 700,
                   cursor: 'pointer',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  boxShadow: isActive ? '0 0 16px rgba(201, 162, 94, 0.6)' : 'none',
-                  transition: 'all 0.3s ease'
+                  boxShadow: isActive ? '0 0 12px rgba(201, 162, 94, 0.6)' : 'none',
+                  transition: 'all 0.25s ease',
+                  flexShrink: 0
                 }}
               >
                 {s.n}
@@ -168,32 +173,36 @@ export default function MargamStepper({ margam }) {
       <AnimatePresence mode="wait">
         <motion.div
           key={step.n}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -20 }}
-          transition={{ duration: 0.3 }}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -12 }}
+          transition={{ duration: 0.25 }}
           style={{
             maxWidth: '780px',
             margin: '0 auto',
             background: 'rgba(82, 54, 74, 0.25)',
             border: '1.5px solid rgba(201, 162, 94, 0.4)',
-            borderRadius: '4px',
-            padding: '2rem 2.5rem',
-            boxShadow: '0 12px 32px rgba(0, 0, 0, 0.4)'
+            borderRadius: '6px',
+            padding: 'clamp(1.25rem, 3.5vw, 2.25rem) clamp(1rem, 3vw, 2.5rem)',
+            boxShadow: '0 12px 32px rgba(0, 0, 0, 0.4)',
+            width: '100%',
+            boxSizing: 'border-box'
           }}
         >
           <div style={{
             display: 'flex',
+            flexWrap: 'wrap',
             justifyContent: 'space-between',
             alignItems: 'center',
             marginBottom: '1rem',
             borderBottom: '1px solid rgba(201, 162, 94, 0.2)',
-            paddingBottom: '0.75rem'
+            paddingBottom: '0.75rem',
+            gap: '0.75rem'
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
               <span style={{
-                width: '38px',
-                height: '38px',
+                width: '34px',
+                height: '34px',
                 borderRadius: '50%',
                 background: 'var(--gold)',
                 color: 'var(--ink)',
@@ -202,7 +211,8 @@ export default function MargamStepper({ margam }) {
                 justifyContent: 'center',
                 fontFamily: 'var(--font-serif)',
                 fontWeight: 700,
-                fontSize: '1.1rem'
+                fontSize: '1rem',
+                flexShrink: 0
               }}>
                 {step.n}
               </span>
@@ -210,12 +220,12 @@ export default function MargamStepper({ margam }) {
                 <h4 style={{
                   fontFamily: 'var(--font-serif)',
                   color: 'var(--ivory)',
-                  fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)',
+                  fontSize: 'clamp(1.2rem, 3vw, 1.8rem)',
                   margin: 0
                 }}>
                   {step.name}
                 </h4>
-                <span style={{ color: 'var(--gold)', fontSize: '0.85rem', fontStyle: 'italic' }}>
+                <span style={{ color: 'var(--gold)', fontSize: '0.82rem', fontStyle: 'italic' }}>
                   {step.translation}
                 </span>
               </div>
@@ -225,9 +235,9 @@ export default function MargamStepper({ margam }) {
               background: 'rgba(201, 162, 94, 0.15)',
               border: '1px solid rgba(201, 162, 94, 0.3)',
               borderRadius: '2px',
-              padding: '0.35rem 0.75rem',
+              padding: '0.3rem 0.65rem',
               color: 'var(--sand)',
-              fontSize: '0.75rem',
+              fontSize: '0.72rem',
               textTransform: 'uppercase',
               letterSpacing: '0.05em'
             }}>
@@ -236,7 +246,7 @@ export default function MargamStepper({ margam }) {
           </div>
 
           <div style={{ marginBottom: '1.25rem' }}>
-            <p style={{ color: 'var(--sand)', lineHeight: 1.7, fontSize: '0.98rem', margin: 0 }}>
+            <p style={{ color: 'var(--sand)', lineHeight: 1.7, fontSize: '0.94rem', margin: 0 }}>
               {step.role}
             </p>
           </div>
@@ -244,17 +254,17 @@ export default function MargamStepper({ margam }) {
           <div style={{
             background: 'rgba(23, 17, 15, 0.65)',
             borderLeft: '3px solid var(--gold)',
-            padding: '1rem 1.25rem',
+            padding: '0.9rem 1rem',
             borderRadius: '0 4px 4px 0'
           }}>
             <span style={{
               color: 'var(--gold)',
-              fontSize: '0.75rem',
+              fontSize: '0.72rem',
               textTransform: 'uppercase',
               letterSpacing: '0.1em',
               fontWeight: 600,
               display: 'block',
-              marginBottom: '0.3rem'
+              marginBottom: '0.25rem'
             }}>
               ✦ Artistic Parallel in Her Life
             </span>
@@ -263,7 +273,8 @@ export default function MargamStepper({ margam }) {
               fontFamily: 'var(--font-serif)',
               fontStyle: 'italic',
               margin: 0,
-              lineHeight: 1.6
+              lineHeight: 1.6,
+              fontSize: 'clamp(0.9rem, 2vw, 0.98rem)'
             }}>
               &ldquo;{step.lifeReflection}&rdquo;
             </p>
@@ -274,9 +285,11 @@ export default function MargamStepper({ margam }) {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            marginTop: '1.5rem',
+            marginTop: '1.25rem',
             paddingTop: '1rem',
-            borderTop: '1px solid rgba(201, 162, 94, 0.15)'
+            borderTop: '1px solid rgba(201, 162, 94, 0.15)',
+            gap: '0.5rem',
+            flexWrap: 'wrap'
           }}>
             <button
               onClick={prevStep}
@@ -284,18 +297,18 @@ export default function MargamStepper({ margam }) {
                 background: 'transparent',
                 border: '1px solid rgba(201, 162, 94, 0.4)',
                 color: 'var(--gold)',
-                padding: '0.5rem 1rem',
+                padding: '0.45rem 0.85rem',
                 borderRadius: '2px',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.4rem',
-                fontSize: '0.85rem'
+                gap: '0.35rem',
+                fontSize: '0.82rem'
               }}
             >
-              <ChevronLeft size={16} /> Previous
+              <ChevronLeft size={16} /> Prev
             </button>
-            <span style={{ color: 'var(--sand)', fontSize: '0.8rem' }}>
+            <span style={{ color: 'var(--sand)', fontSize: '0.78rem' }}>
               Movement {step.n} of 7
             </span>
             <button
@@ -304,14 +317,14 @@ export default function MargamStepper({ margam }) {
                 background: 'var(--gold)',
                 border: '1px solid var(--gold)',
                 color: 'var(--ink)',
-                padding: '0.5rem 1rem',
+                padding: '0.45rem 0.85rem',
                 borderRadius: '2px',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.4rem',
+                gap: '0.35rem',
                 fontWeight: 600,
-                fontSize: '0.85rem'
+                fontSize: '0.82rem'
               }}
             >
               Next <ChevronRight size={16} />
@@ -323,9 +336,10 @@ export default function MargamStepper({ margam }) {
       <p style={{
         color: 'var(--gold-soft)',
         textAlign: 'center',
-        fontSize: '0.8rem',
+        fontSize: '0.78rem',
         fontStyle: 'italic',
-        marginTop: '1.5rem'
+        marginTop: '1.25rem',
+        padding: '0 1rem'
       }}>
         {margam.note}
       </p>

@@ -11,22 +11,20 @@ export default function ArchFrame({
       className={`classical-frame-container ${className}`}
       style={{
         position: 'relative',
-        width: typeof size === 'number' ? `${size}px` : size,
-        maxWidth: '100%',
+        width: '100%',
+        maxWidth: typeof size === 'number' ? `${size}px` : size,
         margin: '0 auto',
-        padding: '10px 10px 16px 10px',
+        padding: '8px',
+        boxSizing: 'border-box'
       }}
     >
-      {/* Offset decorative gold accent outline (creates regal gallery depth) */}
+      {/* Subtle Inset Decorative Gold Outline (stays 100% within frame bounds) */}
       <div
         aria-hidden="true"
         style={{
           position: 'absolute',
-          top: '18px',
-          left: '18px',
-          right: '2px',
-          bottom: '8px',
-          border: '1.5px solid var(--gold)',
+          inset: '2px',
+          border: '1px solid var(--gold)',
           opacity: light ? 0.35 : 0.45,
           borderRadius: '4px',
           pointerEvents: 'none',
@@ -39,13 +37,14 @@ export default function ArchFrame({
         style={{
           position: 'relative',
           zIndex: 1,
-          background: light ? '#FAF5EB' : 'rgba(23, 17, 15, 0.85)',
+          background: light ? '#FAF5EB' : 'rgba(23, 17, 15, 0.9)',
           border: '1.5px solid var(--gold)',
           borderRadius: '4px',
-          padding: '10px',
+          padding: '8px',
           boxShadow: light
-            ? '0 16px 36px rgba(82, 54, 74, 0.12), 0 2px 8px rgba(0,0,0,0.06)'
-            : '0 20px 45px rgba(0, 0, 0, 0.5), 0 0 20px rgba(201, 162, 94, 0.1)',
+            ? '0 12px 30px rgba(82, 54, 74, 0.12), 0 2px 8px rgba(0,0,0,0.06)'
+            : '0 16px 36px rgba(0, 0, 0, 0.5), 0 0 16px rgba(201, 162, 94, 0.1)',
+          boxSizing: 'border-box'
         }}
       >
         {/* Inner passe-partout / matting container */}
@@ -55,7 +54,7 @@ export default function ArchFrame({
             border: `1px solid ${light ? 'rgba(201, 162, 94, 0.4)' : 'rgba(201, 162, 94, 0.35)'}`,
             borderRadius: '2px',
             background: light ? '#FDFBF7' : '#140E0C',
-            padding: '6px',
+            padding: '4px',
             overflow: 'hidden',
           }}
         >
@@ -63,10 +62,11 @@ export default function ArchFrame({
           <img
             src={src}
             alt={alt}
+            loading="lazy"
             style={{
               width: '100%',
               height: 'auto',
-              maxHeight: '560px',
+              maxHeight: '480px',
               objectFit: 'contain',
               display: 'block',
               margin: '0 auto',
@@ -81,7 +81,7 @@ export default function ArchFrame({
           aria-hidden="true"
           viewBox="0 0 24 24"
           style={{
-            position: 'absolute', top: -4, left: -4, width: 22, height: 22,
+            position: 'absolute', top: -3, left: -3, width: 18, height: 18,
             pointerEvents: 'none', fill: 'var(--gold)'
           }}
         >
@@ -94,7 +94,7 @@ export default function ArchFrame({
           aria-hidden="true"
           viewBox="0 0 24 24"
           style={{
-            position: 'absolute', top: -4, right: -4, width: 22, height: 22,
+            position: 'absolute', top: -3, right: -3, width: 18, height: 18,
             pointerEvents: 'none', fill: 'var(--gold)'
           }}
         >
@@ -107,7 +107,7 @@ export default function ArchFrame({
           aria-hidden="true"
           viewBox="0 0 24 24"
           style={{
-            position: 'absolute', bottom: -4, left: -4, width: 22, height: 22,
+            position: 'absolute', bottom: -3, left: -3, width: 18, height: 18,
             pointerEvents: 'none', fill: 'var(--gold)'
           }}
         >
@@ -120,7 +120,7 @@ export default function ArchFrame({
           aria-hidden="true"
           viewBox="0 0 24 24"
           style={{
-            position: 'absolute', bottom: -4, right: -4, width: 22, height: 22,
+            position: 'absolute', bottom: -3, right: -3, width: 18, height: 18,
             pointerEvents: 'none', fill: 'var(--gold)'
           }}
         >
@@ -136,6 +136,7 @@ export default function ArchFrame({
             fontFamily: 'var(--font-serif)',
             fontStyle: 'italic',
             textAlign: 'center',
+            lineHeight: 1.4
           }}>
             {caption}
           </p>
