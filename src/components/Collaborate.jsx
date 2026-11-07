@@ -19,41 +19,44 @@ export default function Collaborate({ collaborate }) {
         {/* Service cards */}
         <div className="collab-grid" style={{
           display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: '1.5rem', marginBottom: '5rem'
+          gap: '1.5rem', marginBottom: '5.5rem'
         }}>
           {items.map((item, i) => (
             <Reveal key={i} delay={i * 0.08}>
               <div style={{
-                border: '1px solid rgba(82,54,74,0.3)',
-                padding: '2rem', borderRadius: '2px',
+                border: '1px solid rgba(82,54,74,0.25)',
+                padding: '2.25rem 1.75rem', borderRadius: '4px',
                 background: 'var(--ivory)',
-                transition: 'all 0.3s',
-                boxShadow: '0 2px 12px rgba(23,17,15,0.07)'
+                transition: 'all 0.3s ease',
+                boxShadow: '0 4px 16px rgba(23,17,15,0.06)',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column'
               }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-4px)'
                   e.currentTarget.style.borderColor = 'var(--gold)'
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(23,17,15,0.12)'
+                  e.currentTarget.style.boxShadow = '0 12px 28px rgba(82, 54, 74, 0.12)'
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0)'
-                  e.currentTarget.style.borderColor = 'rgba(82,54,74,0.3)'
-                  e.currentTarget.style.boxShadow = '0 2px 12px rgba(23,17,15,0.07)'
+                  e.currentTarget.style.borderColor = 'rgba(82,54,74,0.25)'
+                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(23,17,15,0.06)'
                 }}
               >
                 <div style={{
                   fontFamily: 'var(--font-serif)', color: 'var(--gold)',
-                  fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.75rem'
+                  fontSize: '1.6rem', fontWeight: 700, marginBottom: '0.75rem'
                 }}>
                   {String(i + 1).padStart(2, '0')}
                 </div>
                 <h3 style={{
                   fontFamily: 'var(--font-serif)', color: 'var(--plum)',
-                  fontSize: '1.1rem', marginBottom: '0.75rem'
+                  fontSize: '1.18rem', marginBottom: '0.75rem'
                 }}>
                   {item.title}
                 </h3>
-                <p style={{ color: '#6B5565', lineHeight: 1.6, fontSize: '0.9rem' }}>
+                <p style={{ color: '#6B5565', lineHeight: 1.6, fontSize: '0.92rem', margin: 0 }}>
                   {item.text}
                 </p>
               </div>
@@ -65,29 +68,31 @@ export default function Collaborate({ collaborate }) {
         <Reveal>
           <div style={{
             background: 'var(--plum)', color: 'var(--ivory)',
-            padding: '3rem', borderRadius: '2px', marginBottom: '5rem'
+            padding: '3.5rem 2rem', borderRadius: '6px', marginBottom: '5.5rem',
+            boxShadow: '0 16px 40px rgba(82, 54, 74, 0.15)'
           }}>
             <h3 style={{
               fontFamily: 'var(--font-serif)', color: 'var(--gold)',
-              fontSize: 'clamp(1.3rem, 2.5vw, 2rem)', marginBottom: '2rem',
+              fontSize: 'clamp(1.4rem, 2.5vw, 2.2rem)', marginBottom: '2.5rem',
               textAlign: 'center'
             }}>
               {howWeBegin.heading}
             </h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', maxWidth: 480, margin: '0 auto' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: 520, margin: '0 auto' }}>
               {howWeBegin.steps.map((step, i) => (
                 <div key={i} style={{ display: 'flex', gap: '1.25rem', alignItems: 'center' }}>
                   <span style={{
-                    width: '40px', height: '40px', borderRadius: '50%',
+                    width: '42px', height: '42px', borderRadius: '50%',
                     border: '2px solid var(--gold)',
+                    background: 'rgba(201, 162, 94, 0.15)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     flexShrink: 0,
                     fontFamily: 'var(--font-serif)', color: 'var(--gold)',
-                    fontWeight: 700, fontSize: '1rem'
+                    fontWeight: 700, fontSize: '1.1rem'
                   }}>
                     {i + 1}
                   </span>
-                  <p style={{ color: 'var(--sand)', lineHeight: 1.5 }}>{step}</p>
+                  <p style={{ color: 'var(--sand)', lineHeight: 1.6, margin: 0, fontSize: '1.02rem' }}>{step}</p>
                 </div>
               ))}
             </div>
@@ -98,85 +103,87 @@ export default function Collaborate({ collaborate }) {
         <Reveal>
           <div className="closing-grid" style={{
             display: 'grid', gridTemplateColumns: '1fr 1fr',
-            gap: '4rem', alignItems: 'center', marginBottom: '4rem'
+            gap: '4rem', alignItems: 'center', marginBottom: '5.5rem'
           }}>
-            <div>
+            <div style={{ textAlign: 'center' }}>
               <ArchFrame
                 src={`/images/${closing.image}`}
                 alt={closing.imageAlt}
-                size={460}
+                size={400}
                 light
                 caption={closing.caption}
               />
             </div>
             <div>
-              <div style={{ marginBottom: '1.5rem' }}>
-                <span style={{
-                  fontFamily: 'var(--font-serif)',
-                  fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-                  color: 'var(--plum)', fontWeight: 700, display: 'block', lineHeight: 1
-                }}>
-                  {closing.greeting}
-                </span>
-                <span style={{ color: '#6B5565', fontSize: '0.9rem', fontStyle: 'italic' }}>
-                  — {closing.greetingMeaning}
-                </span>
+              <div style={{
+                fontFamily: 'var(--font-serif)',
+                fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                color: 'var(--plum)', fontWeight: 700, lineHeight: 1,
+                marginBottom: '0.5rem'
+              }}>
+                {closing.greeting}
               </div>
               <p style={{
+                color: 'var(--gold)', fontSize: '0.85rem',
+                textTransform: 'uppercase', letterSpacing: '0.15em',
+                marginBottom: '1.5rem', fontWeight: 600
+              }}>
+                &ldquo;{closing.greetingMeaning}&rdquo;
+              </p>
+              <p style={{
                 fontFamily: 'var(--font-serif)',
-                fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
-                color: 'var(--plum)', lineHeight: 1.4, marginBottom: '1.5rem'
+                fontSize: 'clamp(1.2rem, 2.5vw, 1.6rem)',
+                color: 'var(--plum)', lineHeight: 1.5,
+                marginBottom: '1.5rem', fontStyle: 'italic'
               }}>
                 {closing.line}
               </p>
               <p style={{
-                fontFamily: 'var(--font-serif)',
-                color: '#6B5565', fontStyle: 'italic'
+                color: '#6B5565', fontSize: '0.95rem',
+                borderTop: '1px solid rgba(82,54,74,0.2)',
+                paddingTop: '1rem', fontStyle: 'italic'
               }}>
-                {closing.signature}
+                — {closing.signature}
               </p>
             </div>
           </div>
         </Reveal>
 
-        {/* Contact block */}
+        {/* Contact details */}
         <Reveal>
           <div style={{
-            borderTop: '1px solid rgba(82,54,74,0.3)',
-            paddingTop: '3rem', textAlign: 'center'
+            textAlign: 'center',
+            padding: '2.5rem 1.5rem',
+            borderTop: '1px solid rgba(82,54,74,0.15)',
+            borderBottom: '1px solid rgba(82,54,74,0.15)'
           }}>
             <p style={{
               color: 'var(--gold)', textTransform: 'uppercase',
-              letterSpacing: '0.15em', fontSize: '0.75rem',
-              marginBottom: '1.5rem', fontWeight: 600
+              letterSpacing: '0.15em', fontSize: '0.8rem', marginBottom: '1rem',
+              fontWeight: 600
             }}>
               Contact
             </p>
             {hasContact ? (
-              <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+              <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
                 {contact.email && (
-                  <a href={`mailto:${contact.email}`} style={{ color: 'var(--plum)' }}>
+                  <a href={`mailto:${contact.email}`} style={{ color: 'var(--plum)', fontWeight: 600 }}>
                     {contact.email}
                   </a>
                 )}
                 {contact.phone && (
-                  <a href={`tel:${contact.phone}`} style={{ color: 'var(--plum)' }}>
+                  <a href={`tel:${contact.phone}`} style={{ color: 'var(--plum)', fontWeight: 600 }}>
                     {contact.phone}
                   </a>
                 )}
                 {contact.instagram && (
-                  <a href={`https://instagram.com/${contact.instagram}`} target="_blank" rel="noreferrer" style={{ color: 'var(--plum)' }}>
+                  <a href={contact.instagram} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--plum)', fontWeight: 600 }}>
                     Instagram
                   </a>
                 )}
                 {contact.youtube && (
-                  <a href={contact.youtube} target="_blank" rel="noreferrer" style={{ color: 'var(--plum)' }}>
+                  <a href={contact.youtube} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--plum)', fontWeight: 600 }}>
                     YouTube
-                  </a>
-                )}
-                {contact.facebook && (
-                  <a href={contact.facebook} target="_blank" rel="noreferrer" style={{ color: 'var(--plum)' }}>
-                    Facebook
                   </a>
                 )}
                 {contact.location && (
@@ -184,8 +191,14 @@ export default function Collaborate({ collaborate }) {
                 )}
               </div>
             ) : (
-              <p style={{ color: '#6B5565', fontFamily: 'var(--font-serif)', fontStyle: 'italic' }}>
-                Contact details coming soon.
+              <p style={{
+                color: 'var(--plum)',
+                fontStyle: 'italic',
+                fontFamily: 'var(--font-serif)',
+                fontSize: '1.1rem',
+                margin: 0
+              }}>
+                Contact details coming soon. For cultural events, lectures or awareness enquiries, please check back shortly.
               </p>
             )}
           </div>
@@ -195,12 +208,18 @@ export default function Collaborate({ collaborate }) {
       </div>
 
       <style>{`
-        @media (max-width: 1024px) {
+        @media (max-width: 960px) {
           .collab-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
-        @media (max-width: 768px) {
+        @media (max-width: 860px) {
+          .closing-grid {
+            grid-template-columns: 1fr !important;
+            gap: 2.5rem !important;
+            text-align: center;
+          }
+        }
+        @media (max-width: 540px) {
           .collab-grid { grid-template-columns: 1fr !important; }
-          .closing-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </section>

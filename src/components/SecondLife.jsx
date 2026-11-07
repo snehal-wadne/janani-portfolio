@@ -2,13 +2,24 @@ import ArchFrame from './ui/ArchFrame'
 import SectionHeading from './ui/SectionHeading'
 import Divider from './ui/Divider'
 import Reveal from './ui/Reveal'
+import TempleCanvas from './ui/TempleCanvas'
 
 export default function SecondLife({ data }) {
   const { night, resilience, blessing, gratitude, seekingBlessings } = data
 
   return (
-    <section id="second-life" style={{ background: 'var(--plum)', padding: 'var(--section-pad) 1.5rem' }}>
-      <div className="container">
+    <section
+      id="second-life"
+      style={{
+        background: 'linear-gradient(180deg, var(--plum) 0%, #301B2B 50%, var(--ink) 100%)',
+        padding: 'var(--section-pad) 1.5rem',
+        position: 'relative',
+        overflow: 'hidden'
+      }}
+    >
+      <TempleCanvas style={{ opacity: 0.4 }} />
+
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
 
         {/* The Night That Changed Everything */}
         <Reveal>
@@ -17,34 +28,45 @@ export default function SecondLife({ data }) {
         <div className="night-grid" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: '1px',
-          background: 'rgba(201,162,94,0.2)',
-          border: '1px solid rgba(201,162,94,0.2)',
-          marginBottom: '5rem'
+          gap: '12px',
+          marginBottom: '5.5rem'
         }}>
           {night.steps.map((step, i) => (
-            <Reveal key={i} delay={i * 0.07}>
+            <Reveal key={i} delay={i * 0.05}>
               <div style={{
-                background: i % 2 === 0 ? 'rgba(23,17,15,0.7)' : 'rgba(82,54,74,0.5)',
+                background: 'rgba(23,17,15,0.75)',
+                border: '1.5px solid rgba(201,162,94,0.3)',
+                borderRadius: '4px',
                 padding: '2rem 1.5rem',
-                borderBottom: i < 4 ? '1px solid rgba(201,162,94,0.2)' : 'none',
-                minHeight: '180px'
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                transition: 'all 0.3s ease',
+                boxShadow: '0 8px 24px rgba(0,0,0,0.3)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'var(--gold)'
+                e.currentTarget.style.transform = 'translateY(-3px)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(201,162,94,0.3)'
+                e.currentTarget.style.transform = 'translateY(0)'
               }}>
                 <div style={{
                   fontFamily: 'var(--font-serif)',
-                  fontSize: 'clamp(1.3rem, 2.5vw, 2rem)',
+                  fontSize: 'clamp(1.4rem, 2.5vw, 1.85rem)',
                   color: 'var(--gold)', fontWeight: 700,
-                  marginBottom: '0.5rem'
+                  marginBottom: '0.4rem'
                 }}>
                   {step.time}
                 </div>
                 <div style={{
                   fontFamily: 'var(--font-serif)', color: 'var(--ivory)',
-                  fontSize: '1rem', fontWeight: 600, marginBottom: '0.5rem'
+                  fontSize: '1.05rem', fontWeight: 600, marginBottom: '0.6rem'
                 }}>
                   {step.title}
                 </div>
-                <p style={{ color: 'var(--sand)', fontSize: '0.9rem', lineHeight: 1.6 }}>
+                <p style={{ color: 'var(--sand)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>
                   {step.text}
                 </p>
               </div>
@@ -56,7 +78,7 @@ export default function SecondLife({ data }) {
         <Reveal>
           <div className="resilience-grid" style={{
             display: 'grid', gridTemplateColumns: '1fr 1.5fr',
-            gap: '4rem', alignItems: 'center', marginBottom: '5rem'
+            gap: '4rem', alignItems: 'center', marginBottom: '5.5rem'
           }}>
             <div style={{ textAlign: 'center' }}>
               <ArchFrame
@@ -73,29 +95,30 @@ export default function SecondLife({ data }) {
             </div>
             <div>
               <SectionHeading eyebrow={resilience.eyebrow} heading={resilience.heading} />
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginTop: '1.5rem' }}>
                 {resilience.steps.map((step, i) => (
                   <div key={i} style={{
                     display: 'flex', gap: '1.5rem', alignItems: 'flex-start'
                   }}>
                     <div style={{
-                      width: '44px', height: '44px', borderRadius: '50%',
+                      width: '42px', height: '42px', borderRadius: '50%',
                       border: '2px solid var(--gold)',
+                      background: 'rgba(201,162,94,0.15)',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                       flexShrink: 0,
                       fontFamily: 'var(--font-serif)', color: 'var(--gold)',
-                      fontSize: '1.2rem', fontWeight: 700
+                      fontSize: '1.15rem', fontWeight: 700
                     }}>
                       {step.n}
                     </div>
                     <div>
                       <div style={{
                         fontFamily: 'var(--font-serif)', color: 'var(--ivory)',
-                        fontSize: '1.1rem', fontWeight: 600, marginBottom: '0.3rem'
+                        fontSize: '1.15rem', fontWeight: 600, marginBottom: '0.25rem'
                       }}>
                         {step.title}
                       </div>
-                      <p style={{ color: 'var(--sand)', lineHeight: 1.6, fontSize: '0.95rem' }}>
+                      <p style={{ color: 'var(--sand)', lineHeight: 1.6, fontSize: '0.92rem', margin: 0 }}>
                         {step.text}
                       </p>
                     </div>
@@ -110,7 +133,7 @@ export default function SecondLife({ data }) {
         <Reveal>
           <div className="blessing-grid" style={{
             display: 'grid', gridTemplateColumns: '1fr 1.5fr',
-            gap: '4rem', alignItems: 'center', marginBottom: '5rem'
+            gap: '4rem', alignItems: 'center', marginBottom: '5.5rem'
           }}>
             <div style={{ textAlign: 'center' }}>
               <ArchFrame
@@ -123,17 +146,18 @@ export default function SecondLife({ data }) {
             <div>
               <SectionHeading eyebrow={blessing.eyebrow} heading={blessing.heading} />
               <p style={{
-                color: 'var(--sand)', lineHeight: 1.8, marginBottom: '2rem', fontSize: '1.05rem'
+                color: 'var(--sand)', lineHeight: 1.8, marginBottom: '2rem', fontSize: '1.05rem', marginTop: '1.5rem'
               }}>
                 {blessing.text}
               </p>
               <blockquote style={{
                 fontFamily: 'var(--font-serif)',
-                fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
+                fontSize: 'clamp(1.15rem, 2vw, 1.5rem)',
                 color: 'var(--ivory)', fontStyle: 'italic',
-                borderLeft: '3px solid var(--gold)', paddingLeft: '1.5rem'
+                borderLeft: '3px solid var(--gold)', paddingLeft: '1.5rem',
+                lineHeight: 1.5
               }}>
-                {blessing.quote}
+                &ldquo;{blessing.quote}&rdquo;
               </blockquote>
             </div>
           </div>
@@ -147,20 +171,23 @@ export default function SecondLife({ data }) {
           }}>
             <div>
               <SectionHeading eyebrow={gratitude.eyebrow} heading={gratitude.heading} />
-              {gratitude.paragraphs.map((p, i) => (
-                <p key={i} style={{
-                  color: 'var(--sand)', lineHeight: 1.8,
-                  marginBottom: '1.25rem', fontSize: '1.05rem'
-                }}>
-                  {p}
-                </p>
-              ))}
+              <div style={{ marginTop: '1.5rem' }}>
+                {gratitude.paragraphs.map((p, i) => (
+                  <p key={i} style={{
+                    color: 'var(--sand)', lineHeight: 1.8,
+                    marginBottom: '1.25rem', fontSize: '1.02rem'
+                  }}>
+                    {p}
+                  </p>
+                ))}
+              </div>
               <blockquote style={{
                 fontFamily: 'var(--font-serif)',
-                fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
+                fontSize: 'clamp(1.15rem, 2vw, 1.45rem)',
                 color: 'var(--ivory)', fontStyle: 'italic',
                 borderLeft: '3px solid var(--gold)',
-                paddingLeft: '1.5rem', marginTop: '2rem'
+                paddingLeft: '1.5rem', marginTop: '2rem',
+                lineHeight: 1.5
               }}>
                 &ldquo;{gratitude.quote}&rdquo;
               </blockquote>
@@ -183,10 +210,14 @@ export default function SecondLife({ data }) {
         @media (max-width: 1024px) {
           .night-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
-        @media (max-width: 768px) {
+        @media (max-width: 860px) {
           .night-grid { grid-template-columns: 1fr !important; }
           .resilience-grid, .blessing-grid, .gratitude-grid {
             grid-template-columns: 1fr !important;
+            gap: 2.5rem !important;
+          }
+          .gratitude-grid > div:last-child {
+            order: -1;
           }
         }
       `}</style>

@@ -1,6 +1,7 @@
 import { HashRouter, Routes, Route } from 'react-router-dom'
 import content from './content/content.json'
 import Nav from './components/Nav'
+import ScrollProgress from './components/ui/ScrollProgress'
 import Hero from './components/Hero'
 import About from './components/About'
 import TheArt from './components/TheArt'
@@ -18,6 +19,7 @@ import VolunteerStatement from './pages/VolunteerStatement'
 function MainPage() {
   return (
     <>
+      <ScrollProgress />
       <a href="#about" className="skip-link">Skip to content</a>
       <Nav nav={content.nav} personName={content.person.name} />
       <main>

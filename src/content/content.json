@@ -119,10 +119,9 @@
     "prayer": {
       "eyebrow": "Before the Curtain Rises",
       "heading": "Prayer Before Performance",
-      "images": [
-        { "file": "prayer-temple-portrait.jpg", "alt": "A Bharatanatyam dancer in an orange and gold costume kneeling with folded hands before a temple altar with oil lamps and flower garlands" },
-        { "file": "prayer-temple-wide.jpg", "alt": "Wide view of the dancer at prayer before the temple altar" }
-      ],
+      "image": "prayer-temple-wide.jpg",
+      "imageAlt": "Janani in an orange and gold Bharatanatyam costume kneeling with folded hands in prayer before Lord Nataraja at the sacred temple altar",
+      "imageCaption": "Prayer before Lord Nataraja: seeking divine blessings before taking the stage",
       "points": [
         "Dancers traditionally begin with a prayer, seeking blessings before every performance",
         "Salangai Pujai: the ceremony that blesses a dancer's ankle bells",
@@ -291,18 +290,18 @@
     "eyebrow": "Gallery",
     "heading": "Moments",
     "items": [
-      { "file": "hero-portrait-red-teal-saree.jpg", "alt": "Portrait of Janani in a red and teal saree", "caption": "Janani Pradhaban" },
-      { "file": "portrait-block-print-saree.jpg", "alt": "Janani in a dark block-printed saree", "caption": "Portrait" },
-      { "file": "costume-teal-seated-pose.jpg", "alt": "Janani in a teal and maroon Bharatanatyam costume", "caption": "In costume" },
-      { "file": "on-stage-green-costume.jpg", "alt": "Janani performing on stage in a green and gold costume", "caption": "On stage" },
-      { "file": "with-guru-malathi-vaidyanatham.jpg", "alt": "Janani with her guru", "caption": "With her guru" },
-      { "file": "backstage-makeup.jpg", "alt": "Final make-up touches backstage", "caption": "Backstage" },
-      { "file": "prayer-temple-portrait.jpg", "alt": "Prayer before a temple altar", "caption": "Prayer before performance" },
-      { "file": "seeking-blessings.jpg", "alt": "A dancer touching the feet of an elder for blessings", "caption": "Seeking blessings" },
-      { "file": "with-students-salangai-pooja.jpg", "alt": "Janani with her young students at a Salangai Pooja", "caption": "With her students" },
-      { "file": "hospital-after-delivery-with-cake.jpg", "alt": "Janani in hospital cutting a small cake", "caption": "A joyful moment in hospital" },
-      { "file": "dr-mohamed-rela-with-janani-son.jpg", "alt": "Dr. Mohamed Rela carrying Janani's son", "caption": "Dr. Mohamed Rela, carrying Janani's son" },
-      { "file": "nataraja-golden.jpg", "alt": "Golden Nataraja statue", "caption": "Nataraja, the cosmic dancer" }
+      { "file": "hero-portrait-red-teal-saree.jpg", "alt": "Portrait of Janani in a red and teal saree", "caption": "Janani Pradhaban", "category": "dance" },
+      { "file": "portrait-block-print-saree.jpg", "alt": "Janani in a dark block-printed saree", "caption": "Portrait of the Artist", "category": "life" },
+      { "file": "costume-teal-seated-pose.jpg", "alt": "Janani in a teal and maroon Bharatanatyam costume", "caption": "Classical Silk & Adornment", "category": "dance" },
+      { "file": "on-stage-green-costume.jpg", "alt": "Janani performing on stage in a green and gold costume", "caption": "Centre Stage Recital", "category": "dance" },
+      { "file": "with-guru-malathi-vaidyanatham.jpg", "alt": "Janani with her guru", "caption": "With Guru Smt. Malathi Vaidyanatham", "category": "tradition" },
+      { "file": "backstage-makeup.jpg", "alt": "Final make-up touches backstage", "caption": "Backstage Preparation", "category": "tradition" },
+      { "file": "prayer-temple-wide.jpg", "alt": "Janani kneeling in prayer before Lord Nataraja at the altar", "caption": "Prayer Before Lord Nataraja", "category": "tradition" },
+      { "file": "seeking-blessings.jpg", "alt": "A dancer touching the feet of an elder for blessings", "caption": "Seeking Blessings", "category": "tradition" },
+      { "file": "with-students-salangai-pooja.jpg", "alt": "Janani with her young students at a Salangai Pooja", "caption": "With Her Students (Salangai Pooja)", "category": "tradition" },
+      { "file": "hospital-after-delivery-with-cake.jpg", "alt": "Janani in hospital cutting a small cake", "caption": "Celebration of Motherhood", "category": "life" },
+      { "file": "dr-mohamed-rela-with-janani-son.jpg", "alt": "Dr. Mohamed Rela carrying Janani's son", "caption": "Dr. Mohamed Rela, carrying Janani's son", "category": "life" },
+      { "file": "nataraja-golden.jpg", "alt": "Golden Nataraja statue", "caption": "Nataraja, the Cosmic Dancer", "category": "dance" }
     ]
   },
 

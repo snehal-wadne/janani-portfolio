@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import SectionHeading from './ui/SectionHeading'
 import Divider from './ui/Divider'
 import Reveal from './ui/Reveal'
+import TempleCanvas from './ui/TempleCanvas'
 
 export default function Mission({ mission }) {
   return (
@@ -12,6 +13,8 @@ export default function Mission({ mission }) {
         position: 'relative', overflow: 'hidden'
       }}
     >
+      <TempleCanvas style={{ opacity: 0.5 }} />
+
       {/* Mandala background */}
       <svg
         style={{
@@ -52,9 +55,11 @@ export default function Mission({ mission }) {
           <div style={{
             textAlign: 'center',
             padding: '3rem 2rem',
-            border: '1px solid rgba(201,162,94,0.3)',
+            border: '1.5px solid rgba(201,162,94,0.3)',
+            borderRadius: '4px',
             marginBottom: '5rem',
-            background: 'rgba(82,54,74,0.15)'
+            background: 'rgba(82,54,74,0.18)',
+            boxShadow: '0 12px 32px rgba(0,0,0,0.3)'
           }}>
             <p style={{
               fontFamily: 'var(--font-serif)',
@@ -66,7 +71,7 @@ export default function Mission({ mission }) {
             </p>
             <p style={{
               color: 'var(--sand)', marginTop: '1.5rem',
-              fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: '1.1rem'
+              fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: '1.15rem'
             }}>
               &ldquo;{mission.personalQuote}&rdquo;
             </p>
@@ -82,9 +87,10 @@ export default function Mission({ mission }) {
             {mission.reasons.map((reason, i) => (
               <div key={i} style={{
                 border: '1px solid rgba(201,162,94,0.3)',
-                padding: '2rem', borderRadius: '2px',
-                background: 'rgba(82,54,74,0.2)',
-                transition: 'transform 0.3s, border-color 0.3s'
+                padding: '2.25rem 1.75rem', borderRadius: '4px',
+                background: 'rgba(82,54,74,0.22)',
+                transition: 'transform 0.3s, border-color 0.3s',
+                boxShadow: '0 8px 24px rgba(0,0,0,0.2)'
               }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-4px)'
@@ -97,17 +103,17 @@ export default function Mission({ mission }) {
               >
                 <div style={{
                   fontFamily: 'var(--font-serif)', color: 'var(--gold)',
-                  fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.75rem'
+                  fontSize: '1.6rem', fontWeight: 700, marginBottom: '0.75rem'
                 }}>
                   {String(i + 1).padStart(2, '0')}
                 </div>
                 <h3 style={{
                   fontFamily: 'var(--font-serif)', color: 'var(--ivory)',
-                  fontSize: '1.1rem', marginBottom: '0.75rem'
+                  fontSize: '1.15rem', marginBottom: '0.75rem'
                 }}>
                   {reason.title}
                 </h3>
-                <p style={{ color: 'var(--sand)', lineHeight: 1.6, fontSize: '0.9rem' }}>
+                <p style={{ color: 'var(--sand)', lineHeight: 1.6, fontSize: '0.92rem', margin: 0 }}>
                   {reason.text}
                 </p>
               </div>
@@ -130,8 +136,8 @@ export default function Mission({ mission }) {
               {mission.callToAction.heading}
             </h3>
             <div style={{
-              display: 'flex', flexDirection: 'column', gap: '1rem',
-              maxWidth: 500, margin: '0 auto', marginBottom: '2.5rem'
+              display: 'flex', flexDirection: 'column', gap: '1.25rem',
+              maxWidth: 520, margin: '0 auto', marginBottom: '2.5rem'
             }}>
               {mission.callToAction.steps.map((step, i) => (
                 <div key={i} style={{
@@ -139,8 +145,9 @@ export default function Mission({ mission }) {
                   textAlign: 'left'
                 }}>
                   <span style={{
-                    width: '36px', height: '36px', borderRadius: '50%',
+                    width: '38px', height: '38px', borderRadius: '50%',
                     border: '2px solid var(--gold)',
+                    background: 'rgba(201,162,94,0.12)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     flexShrink: 0,
                     fontFamily: 'var(--font-serif)', color: 'var(--gold)',
@@ -148,13 +155,13 @@ export default function Mission({ mission }) {
                   }}>
                     {i + 1}
                   </span>
-                  <p style={{ color: 'var(--sand)', lineHeight: 1.5 }}>{step}</p>
+                  <p style={{ color: 'var(--sand)', lineHeight: 1.5, margin: 0, fontSize: '0.98rem' }}>{step}</p>
                 </div>
               ))}
             </div>
             <p style={{
               fontFamily: 'var(--font-serif)',
-              fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
+              fontSize: 'clamp(1.2rem, 2vw, 1.6rem)',
               color: 'var(--gold)', fontWeight: 600
             }}>
               {mission.callToAction.closing}
@@ -171,9 +178,9 @@ export default function Mission({ mission }) {
             {mission.messageToTheWorld.map((line, i) => (
               <p key={i} style={{
                 fontFamily: 'var(--font-serif)',
-                fontSize: 'clamp(1rem, 1.8vw, 1.25rem)',
+                fontSize: 'clamp(1.05rem, 1.8vw, 1.25rem)',
                 color: i === 0 ? 'var(--ivory)' : 'var(--sand)',
-                lineHeight: 1.7, marginBottom: '1rem',
+                lineHeight: 1.7, marginBottom: '1.2rem',
                 fontStyle: 'italic'
               }}>
                 {line}
@@ -184,7 +191,7 @@ export default function Mission({ mission }) {
 
         {/* Links to long-form pages */}
         <Reveal delay={0.3}>
-          <div style={{
+          <div className="mission-links-group" style={{
             display: 'flex', gap: '1rem', flexWrap: 'wrap',
             justifyContent: 'center', marginBottom: '4rem'
           }}>
@@ -192,12 +199,14 @@ export default function Mission({ mission }) {
               to="/story"
               style={{
                 background: 'transparent', color: 'var(--gold)',
-                border: '1px solid var(--gold)', padding: '0.875rem 2rem',
+                border: '1.5px solid var(--gold)', padding: '0.875rem 2rem',
                 fontFamily: 'var(--font-body)', fontWeight: 600,
-                fontSize: '0.875rem', letterSpacing: '0.08em',
+                fontSize: '0.85rem', letterSpacing: '0.08em',
                 textTransform: 'uppercase', borderRadius: '2px',
                 transition: 'all 0.3s', display: 'inline-block'
               }}
+              onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--gold)'; e.currentTarget.style.color = 'var(--ink)' }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--gold)' }}
             >
               Read Her Full Story
             </Link>
@@ -205,12 +214,14 @@ export default function Mission({ mission }) {
               to="/speech"
               style={{
                 background: 'transparent', color: 'var(--gold)',
-                border: '1px solid var(--gold)', padding: '0.875rem 2rem',
+                border: '1.5px solid var(--gold)', padding: '0.875rem 2rem',
                 fontFamily: 'var(--font-body)', fontWeight: 600,
-                fontSize: '0.875rem', letterSpacing: '0.08em',
+                fontSize: '0.85rem', letterSpacing: '0.08em',
                 textTransform: 'uppercase', borderRadius: '2px',
                 transition: 'all 0.3s', display: 'inline-block'
               }}
+              onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--gold)'; e.currentTarget.style.color = 'var(--ink)' }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--gold)' }}
             >
               Her Awareness Speech
             </Link>
@@ -218,12 +229,14 @@ export default function Mission({ mission }) {
               to="/volunteer"
               style={{
                 background: 'transparent', color: 'var(--gold)',
-                border: '1px solid var(--gold)', padding: '0.875rem 2rem',
+                border: '1.5px solid var(--gold)', padding: '0.875rem 2rem',
                 fontFamily: 'var(--font-body)', fontWeight: 600,
-                fontSize: '0.875rem', letterSpacing: '0.08em',
+                fontSize: '0.85rem', letterSpacing: '0.08em',
                 textTransform: 'uppercase', borderRadius: '2px',
                 transition: 'all 0.3s', display: 'inline-block'
               }}
+              onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--gold)'; e.currentTarget.style.color = 'var(--ink)' }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--gold)' }}
             >
               Volunteer Statement
             </Link>
@@ -233,8 +246,8 @@ export default function Mission({ mission }) {
         {/* Disclaimer */}
         <Reveal delay={0.35}>
           <p style={{
-            color: 'rgba(227,213,181,0.5)',
-            fontSize: '0.78rem', textAlign: 'center',
+            color: 'rgba(227,213,181,0.6)',
+            fontSize: '0.8rem', textAlign: 'center',
             maxWidth: '60ch', margin: '0 auto', lineHeight: 1.6,
             borderTop: '1px solid rgba(201,162,94,0.15)', paddingTop: '2rem'
           }}>
@@ -246,11 +259,19 @@ export default function Mission({ mission }) {
       </div>
 
       <style>{`
-        @media (max-width: 768px) {
-          .reasons-grid { grid-template-columns: 1fr !important; }
-        }
-        @media (min-width: 480px) and (max-width: 1024px) {
+        @media (max-width: 900px) {
           .reasons-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+        @media (max-width: 600px) {
+          .reasons-grid { grid-template-columns: 1fr !important; }
+          .mission-links-group {
+            flex-direction: column;
+            width: 100%;
+          }
+          .mission-links-group a {
+            width: 100%;
+            text-align: center;
+          }
         }
       `}</style>
     </section>

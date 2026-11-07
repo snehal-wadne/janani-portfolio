@@ -13,6 +13,12 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  overflow-x: hidden;
+}
+
+section[id] {
+  scroll-margin-top: 80px;
 }
 
 body {
@@ -22,6 +28,9 @@ body {
   font-size: 1rem;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  width: 100%;
+  min-width: 320px;
 }
 
 img {
@@ -31,12 +40,14 @@ img {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
-  line-height: 1.1;
+  line-height: 1.15;
   font-weight: 600;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
-h1 { font-size: clamp(3rem, 6vw, 6rem); }
-h2 { font-size: clamp(2rem, 4vw, 3.5rem); }
+h1 { font-size: clamp(2.5rem, 6vw, 5.5rem); }
+h2 { font-size: clamp(1.85rem, 4vw, 3.2rem); }
 h3 { font-size: clamp(1.25rem, 2.5vw, 2rem); }
 
 a {
@@ -74,7 +85,8 @@ a:hover { opacity: 0.8; }
 .container {
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 clamp(1rem, 4vw, 1.5rem);
+  width: 100%;
 }
 
 /* ── Skip link ── */
@@ -117,7 +129,7 @@ a:hover { opacity: 0.8; }
 }
 
 /* ── Nav responsive ── */
-@media (max-width: 768px) {
+@media (max-width: 860px) {
   .nav-desktop { display: none !important; }
   .nav-hamburger { display: flex !important; }
 }
@@ -204,6 +216,6 @@ a:hover { opacity: 0.8; }
 
 /* ── Print ── */
 @media print {
-  .nav-wrapper, .back-link { display: none; }
+  .nav-wrapper, .back-link, .temple-canvas { display: none !important; }
   body { background: white; color: black; }
 }

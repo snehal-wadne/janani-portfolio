@@ -14,7 +14,9 @@ export default function About({ about }) {
           alignItems: 'start'
         }}>
           <Reveal>
-            <ArchFrame src={`/images/${about.image}`} alt={about.imageAlt} size={440} light />
+            <div style={{ textAlign: 'center' }}>
+              <ArchFrame src={`/images/${about.image}`} alt={about.imageAlt} size={440} light />
+            </div>
           </Reveal>
 
           <div>
@@ -22,7 +24,7 @@ export default function About({ about }) {
               <SectionHeading eyebrow={about.eyebrow} heading={about.heading} light />
             </Reveal>
             <Reveal delay={0.1}>
-              <p style={{ lineHeight: 1.8, marginBottom: '1.5rem', color: 'var(--plum)', fontSize: '1.05rem' }}>
+              <p style={{ lineHeight: 1.8, marginBottom: '1.5rem', color: 'var(--plum)', fontSize: '1.08rem' }}>
                 {about.intro}
               </p>
               <p style={{ lineHeight: 1.8, marginBottom: '2.5rem', color: 'var(--plum)' }}>
@@ -32,7 +34,7 @@ export default function About({ about }) {
 
             {/* Stats */}
             <Reveal delay={0.2}>
-              <div style={{
+              <div className="about-stats-grid" style={{
                 display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)',
                 gap: '1.5rem', marginBottom: '2.5rem'
               }}>
@@ -40,18 +42,21 @@ export default function About({ about }) {
                   <div key={i} style={{
                     textAlign: 'center',
                     borderTop: '2px solid var(--gold)',
-                    paddingTop: '1rem'
+                    paddingTop: '1.25rem',
+                    background: 'rgba(201, 162, 94, 0.05)',
+                    borderRadius: '0 0 4px 4px',
+                    padding: '1.25rem 0.5rem 0.75rem'
                   }}>
                     <div style={{
                       fontFamily: 'var(--font-serif)',
-                      fontSize: 'clamp(2rem, 4vw, 3rem)',
+                      fontSize: 'clamp(2.2rem, 4vw, 3.2rem)',
                       color: 'var(--gold)', fontWeight: 700, lineHeight: 1
                     }}>
                       {s.value}
                     </div>
                     <div style={{
-                      fontSize: '0.8rem', color: 'var(--plum)',
-                      marginTop: '0.4rem', lineHeight: 1.3
+                      fontSize: '0.82rem', color: 'var(--plum)',
+                      marginTop: '0.5rem', lineHeight: 1.35
                     }}>
                       {s.label}
                     </div>
@@ -71,10 +76,11 @@ export default function About({ about }) {
             <Reveal delay={0.3}>
               <blockquote style={{
                 borderLeft: '3px solid var(--gold)',
-                paddingLeft: '1.5rem', marginTop: '2rem',
+                paddingLeft: '1.5rem', marginTop: '2.5rem',
                 fontFamily: 'var(--font-serif)',
-                fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
-                color: 'var(--kumkum)', fontStyle: 'italic'
+                fontSize: 'clamp(1.2rem, 2.5vw, 1.6rem)',
+                color: 'var(--kumkum)', fontStyle: 'italic',
+                lineHeight: 1.5
               }}>
                 &ldquo;{about.quote}&rdquo;
               </blockquote>
@@ -84,14 +90,20 @@ export default function About({ about }) {
         <Divider />
       </div>
       <style>{`
-        @media (max-width: 768px) {
+        @media (max-width: 860px) {
           .about-grid {
             grid-template-columns: 1fr !important;
-            gap: 2rem !important;
+            gap: 2.5rem !important;
           }
           .about-grid > div:first-child {
-            max-width: 300px;
+            max-width: 320px;
             margin: 0 auto;
+          }
+        }
+        @media (max-width: 600px) {
+          .about-stats-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1rem !important;
           }
         }
       `}</style>
